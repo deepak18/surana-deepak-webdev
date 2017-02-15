@@ -1,0 +1,150 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                    Choose Widget
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="visible-xs navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
+                    Edit Widget
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--<div ng-if="model.widget.widgetType === 'HEADER'">
+    <h1>Header Editor</h1>
+</div>
+<div ng-if="model.widget.widgetType === 'IMAGE'">
+    <h1>Image Editor</h1>
+</div>-->
+
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs wbdv-left-pane">
+        <ul class="list-group">
+            <li class="list-group-item wbdv-no-border">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a ng-click="model.createWidget('HEADER')">
+                            Header
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item wbdv-no-border">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a ng-click="model.createWidget('IMAGE')">
+                            Image
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item wbdv-no-border">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a ng-click="model.createWidget('YOUTUBE')">
+                            YouTube
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item wbdv-no-border">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a ng-click="model.createWidget('HTML')">
+                            HTML
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+        <form>
+            <!--<ng-include src="model.getEditorTemplateUrl(model.widget.widgetType)"></ng-include>-->
+
+            <div ng-switch="model.widget.widgetType">
+                <div ng-switch-when = "HEADER">
+                    <ng-include src="'views/widget/templates/editors/widget-HEADER-editor.view.client.html'"></ng-include>
+                </div>
+
+                <div ng-switch-when = "IMAGE">
+                    <ng-include src="'views/widget/templates/editors/widget-IMAGE-editor.view.client.html'"></ng-include>
+                </div>
+
+                <div ng-switch-when = "HTML">
+                    <ng-include src="'views/widget/templates/editors/widget-HTML-editor.view.client.html'"></ng-include>
+                </div>
+
+                <div ng-switch-when = "YOUTUBE">
+                    <ng-include src="'views/widget/templates/editors/widget-YOUTUBE-editor.view.client.html'"></ng-include>
+                </div>
+            </div>
+
+            <a ng-click="model.updateWidget()" class="btn btn-primary btn-block">
+                Done
+            </a>
+            <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
+                Delete
+            </a>
+        </form>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text text-center btn-block">
+            <div class="col-xs-3">
+                <a href="#/login" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

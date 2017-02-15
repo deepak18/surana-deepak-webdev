@@ -1,0 +1,92 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                Choose Widget
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item ds-no-border">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-click="model.createWidget('HEADER')">
+                        Header
+                    </a>
+                </div>
+
+            </div>
+        </li>
+
+        <li class="list-group-item ds-no-border">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-click="model.createWidget('IMAGE')">
+                        Image
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <li class="list-group-item ds-no-border">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-click="model.createWidget('YOUTUBE')">
+                        YouTube
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <li class="list-group-item ds-no-border">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-click="model.createWidget('HTML')">
+                        HTML
+                    </a>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text text-center btn-block">
+            <div class="col-xs-3">
+                <a href="#/login" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
