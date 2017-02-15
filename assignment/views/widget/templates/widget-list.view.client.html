@@ -1,0 +1,150 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                Widgets
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div ng-repeat="widget in model.widgets">
+        <div class="ds-widget-tool">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-move"></span>
+        </div>
+
+        <!--<ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>-->
+
+        <div ng-switch="widget.widgetType">
+            <div ng-switch-when = "HEADER">
+                <ng-include src="'views/widget/templates/widget-templates/widget-HEADER.view.client.html'"></ng-include>
+            </div>
+
+            <div ng-switch-when = "IMAGE">
+                <ng-include src="'views/widget/templates/widget-templates/widget-IMAGE.view.client.html'"></ng-include>
+            </div>
+
+            <div ng-switch-when = "HTML">
+                <ng-include src="'views/widget/templates/widget-templates/widget-HTML.view.client.html'"></ng-include>
+            </div>
+
+            <div ng-switch-when = "YOUTUBE">
+                <ng-include src="'views/widget/templates/widget-templates/widget-YOUTUBE.view.client.html'"></ng-include>
+            </div>
+        </div>
+    </div>
+   <!-- <div>
+        <div>
+            <div class="ds-widget-tool">
+                <a href="widget-heading.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-move"></span>
+            </div>
+            <h1> Cricket </h1>
+        </div>
+
+
+        <div>
+            <div class="ds-widget-tool">
+                <a href="widget-heading.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-move"></span>
+            </div>
+            <h3> How about having specialists at short leg? </h3>
+        </div>
+
+        <div>
+            <div class="ds-widget-tool">
+                <a href="widget-image.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-move"></span>
+            </div>
+            <img src="http://www.espncricinfo.com/db/PICTURES/CMS/256800/256891.3.jpg"  alt="Short Leg fielder" class="ds-widget-image">
+        </div>
+
+        <div>
+            <div class="ds-widget-tool">
+                <a href="widget-heading.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-move"></span>
+            </div>
+            <p>"To be poor at short leg doesn't excuse you; to be good at it condemns you there for longer". <br>
+                The captain's phrasing may vary from region to region, but any youngster or newcomer to a cricket team knows the question.
+                For the sake of accuracy, it's less a question than a veiled instruction, polished with hollow concern.
+                It rarely matters if you're "not right" to field in close. Very few are.
+                And that's the point: a fielding position of great value and a high degree of difficulty is often bestowed upon the team's lowliest member.
+                With some exceptions, being stationed at short leg is usually an indicator of a player's hypothetical ranking rather than of their reflexes.
+            </p>
+        </div>
+
+        <div>
+            <div class="ds-widget-tool pull-right">
+                <a href="widget-heading.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-move"></span>
+            </div>
+            <h3>Harsha Bhogle on MS Dhoni's decision to give up captaincy.</h3>
+        </div>
+
+        <div>
+            <div class="ds-widget-tool pull-right">
+                <a href="#">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-move"></span>
+            </div>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/tklpAM1gj8o">
+                </iframe>
+            </div>
+        </div>
+    </div>-->
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text text-center btn-block">
+            <div class="col-xs-3">
+                <a href="#/login" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
