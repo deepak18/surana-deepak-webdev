@@ -1,0 +1,75 @@
+module.exports = function(app){
+    app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
+    app.get("/api/page/:pageId", findPageById);
+    app.put("/api/page/:pageId", updatePage);
+    app.post("/api/website/:websiteId/page", createPage);
+    app.delete("/api/page/:pageId", deletePage);
+
+    var pages = [
+        { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
+        { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
+        { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
+    ];
+
+    function deletePage(req, res) {
+        var pid = req.params.pageId;
+
+        for(var p in pages) {
+            if(pages[p]._id === pid) {
+                pages.splice(p, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function createPage(req, res) {
+        var wid = req.params.websiteId;
+        var newPage = req.body;
+
+        newPage.websiteId = wid;
+        newPage._id = (new Date()).getTime().toString();
+        newPage.description = newPage.title;
+        pages.push(newPage);
+        res.sendStatus(200);
+    }
+
+    function updatePage(req, res) {
+        var pid = req.params.pageId;
+        var newPage = req.body;
+
+        for (p in pages) {
+            page = pages[p];
+            if (page._id === pid) {
+                page.name = newPage.name;
+                page.description = newPage.description;
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function findPageById(req, res) {
+        var pid = req.params.pageId;
+
+        var page = pages.find(function(p){
+           return p._id === pid;
+        });
+
+        res.json(page);
+    }
+
+    function findAllPagesForWebsite(req, res) {
+        var wid = req.params.websiteId;
+
+        var pagesforWebsite = [];
+        for(var p in pages) {
+            if(pages[p].websiteId === wid) {
+                pagesforWebsite.push(pages[p]);
+            }
+        }
+        res.send(pagesforWebsite);
+    }
+};
