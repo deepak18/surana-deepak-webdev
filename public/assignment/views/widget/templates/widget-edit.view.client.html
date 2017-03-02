@@ -91,7 +91,6 @@
     </div>
 
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
-        <form>
             <!--<ng-include src="model.getEditorTemplateUrl(model.widget.widgetType)"></ng-include>-->
 
             <div ng-switch="model.widget.widgetType">
@@ -111,14 +110,6 @@
                     <ng-include src="'views/widget/templates/editors/widget-YOUTUBE-editor.view.client.html'"></ng-include>
                 </div>
             </div>
-
-            <a ng-click="model.updateWidget()" class="btn btn-primary btn-block">
-                Done
-            </a>
-            <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
-                Delete
-            </a>
-        </form>
     </div>
 </div>
 

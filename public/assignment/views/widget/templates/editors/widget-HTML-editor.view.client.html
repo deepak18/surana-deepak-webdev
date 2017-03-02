@@ -1,10 +1,19 @@
-<div class="form-group">
-    <label for="html-text">Text</label>
-    <input ng-model="model.widget.text"
-           type="text"
-           placeholder="HTML Text"
-           class="form-control"
-           id="html-text"/>
-</div>
+<form>
+    <div class="form-group">
+        <label for="html-text">Text</label>
+        <input ng-model="model.widget.text"
+               type="text"
+               placeholder="HTML Text"
+               class="form-control"
+               id="html-text"/>
+    </div>
+
+    <a ng-click="model.updateWidget()" class="btn btn-primary btn-block">
+        Done
+    </a>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
+        Delete
+    </a>
+</form>
 
 

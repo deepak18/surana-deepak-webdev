@@ -7,7 +7,7 @@ module.exports = function(app){
     app.put("/api/widget/:widgetId", updateWidget);
     app.post("/api/page/:pageId/widget", createWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
-    app.post("/api/upload", upload.single('myFile'), uploadImage);
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "Cricket"},
@@ -27,6 +27,7 @@ module.exports = function(app){
     ];
 
     function uploadImage(req, res) {
+        console.log("hit");
 
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
@@ -45,10 +46,10 @@ module.exports = function(app){
             return widget._id === widgetId;
         });
 
-        imageWidget.width = width;
-        imageWidget.url = req.protocol + '://' + req.get('host') + "/assignment/public/uploads/" + filename;
+        imageWidget.width = "100%";
+        imageWidget.url = req.protocol + '://' + req.get('host') + "/public/uploads/" + myFile.filename;
 
-        res.redirect("/assignment/index.html/#/user/"+uid+"/website/"+wid+"/page/"+imageWidget.pageId+"/widget");
+        res.redirect("/assignment/index.html#/user/"+uid+"/website/"+wid+"/page/"+imageWidget.pageId+"/widget");
     }
 
     function deleteWidget(req, res) {
