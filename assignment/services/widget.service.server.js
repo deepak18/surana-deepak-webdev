@@ -27,7 +27,6 @@ module.exports = function(app){
     ];
 
     function uploadImage(req, res) {
-        console.log("hit");
 
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
