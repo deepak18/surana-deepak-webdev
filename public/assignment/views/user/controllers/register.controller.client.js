@@ -22,19 +22,38 @@
             }
             UserService
                 .findUserByUsername(newUser.username)
-                .success(function () {
-                    vm.error = "Sorry, that Username has been already taken.";
+                .success(function (existingUser) {
+                    //if(existingUser){
+                        vm.error = "Sorry, that Username has been already taken.";
+
                 })
                 .error(function () {
                     UserService
                         .createUser(newUser)
-                        .success(function (newUserId) {
-                            $location.url('/user/' + newUserId);
+                        .success(function (newUser) {
+                            $location.url('/user/' + newUser._id);
                         })
                         .error(function () {
                             vm.error = "Sorry, failed to register";
                         });
                 });
+            /*UserService
+                .findUserByUsername(newUser.username)
+                .success(function (user) {
+                    console.log("controller:" + user);
+                    vm.error = "Sorry, that Username has been already taken.";
+                    return;
+                });
+
+            delete newUser.vpassword;
+            UserService
+                .createUser(newUser)
+                .success(function (newUser) {
+                    $location.url('/user/' + newUser._id);
+                })
+                .error(function () {
+                    vm.error = "Sorry, failed to register";
+                });*/
             /*UserService.createUser(newUser);
             $location.url('/user/' + newUser._id);*/
         }

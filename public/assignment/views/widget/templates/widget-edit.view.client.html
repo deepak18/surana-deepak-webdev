@@ -93,9 +93,9 @@
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
             <!--<ng-include src="model.getEditorTemplateUrl(model.widget.widgetType)"></ng-include>-->
 
-            <div ng-switch="model.widget.widgetType">
-                <div ng-switch-when = "HEADER">
-                    <ng-include src="'views/widget/templates/editors/widget-HEADER-editor.view.client.html'"></ng-include>
+            <div ng-switch="model.widget.type">
+                <div ng-switch-when = "HEADING">
+                    <ng-include src="'views/widget/templates/editors/widget-HEADING-editor.view.client.html'"></ng-include>
                 </div>
 
                 <div ng-switch-when = "IMAGE">
@@ -108,6 +108,9 @@
 
                 <div ng-switch-when = "YOUTUBE">
                     <ng-include src="'views/widget/templates/editors/widget-YOUTUBE-editor.view.client.html'"></ng-include>
+                </div>
+                <div ng-switch-when = "TEXT">
+                    <ng-include src="'views/widget/templates/editors/widget-TEXT-editor.view.client.html'"></ng-include>
                 </div>
             </div>
     </div>

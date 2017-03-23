@@ -10,7 +10,8 @@
             "findAllWidgetsForPage": findAllWidgetsForPage,
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
-            "deleteWidget": deleteWidget
+            "deleteWidget": deleteWidget,
+            "reorderWidget": reorderWidget
         };
         return api;
 
@@ -96,6 +97,10 @@
                 }
             }
             return widgetsforPage;*/
+        }
+
+        function reorderWidget(pageId, index1, index2) {
+            return $http.put("/page/" + pageId + "/widget?initial=" + index1 + "&final=" + index2);
         }
     }
 })();

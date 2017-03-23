@@ -14,6 +14,9 @@ require ("./test/app.js")(app);
 
 require("./assignment/app.js")(app);
 
+require("./assignment/model/models.server");
+require("./mongo/movie.js")(app);
+
 var port = process.env.PORT || 3000;
 
 app.listen(port);

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MovieApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../assignment/js/angular.js"></script>
+    <script src="movie.js"></script>
+    <title>Movies Database</title>
+</head>
+<body>
+<div class="container-fluid" ng-controller="MovieController as model">
+    <h1>Movies Database</h1>
+    <label> Title </label>
+    <input ng-model="movie.title" class="form-control">
+    <a ng-click="model.createMovie(movie)" class="btn btn-block btn-primary">Create</a>
+</div>
+</body>
+</html>

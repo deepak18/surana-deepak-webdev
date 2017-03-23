@@ -30,9 +30,9 @@
 
             <!--<ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>-->
 
-            <div ng-switch="widget.widgetType">
-                <div ng-switch-when = "HEADER">
-                    <ng-include src="'views/widget/templates/widget-templates/widget-HEADER.view.client.html'"></ng-include>
+            <div ng-switch="widget.type">
+                <div ng-switch-when = "HEADING">
+                    <ng-include src="'views/widget/templates/widget-templates/widget-HEADING.view.client.html'"></ng-include>
                 </div>
 
                 <div ng-switch-when = "IMAGE">
@@ -43,7 +43,11 @@
                     <ng-include src="'views/widget/templates/widget-templates/widget-HTML.view.client.html'"></ng-include>
                 </div>
 
-                <div ng-switch-when = "YOUTUBE">
+                <div ng-switch-when = "TEXT">
+                    <ng-include src="'views/widget/templates/widget-templates/widget-TEXT.view.client.html'"></ng-include>
+                </div>
+
+                <div ng-switch-when = "YOUTUBE" class="youtube-widget">
                     <ng-include src="'views/widget/templates/widget-templates/widget-YOUTUBE.view.client.html'"></ng-include>
                 </div>
             </div>

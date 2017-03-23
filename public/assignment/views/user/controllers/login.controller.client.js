@@ -20,7 +20,12 @@
             UserService
                 .findUserByCredentials(user.username, user.password)
                 .success(function (loginUser) {
-                    $location.url('/user/' + loginUser._id);
+                    if(loginUser){
+                        $location.url('/user/' + loginUser._id);
+                    }
+                    else{
+                        vm.error = 'No such User';
+                    }
                 })
                 .error(function () {
                     vm.error = 'No such User';

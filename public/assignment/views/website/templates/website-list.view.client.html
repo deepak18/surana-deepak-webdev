@@ -48,10 +48,10 @@
                     </a>
                 </div>
                 <div class="col-sm-3 hidden-xs">
-                    {{website.created | date}}
+                    {{website.dateCreated | date}}
                 </div>
                 <div class="col-sm-2 hidden-xs">
-                    {{website.developerId}}
+                    {{model.developerName}}
                 </div>
                 <div class="col-xs-2">
                     <a href="#/user/{{model.userId}}/website/{{website._id}}">

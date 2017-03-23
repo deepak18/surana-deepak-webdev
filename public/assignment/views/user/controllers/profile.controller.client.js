@@ -33,7 +33,6 @@
                         vm.error = 'Unable to Unregister user';
                     })
             }
-
         }
 
         function update(newUser) {

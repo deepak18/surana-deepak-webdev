@@ -1,11 +1,18 @@
-<form>
-    <div class="form-group">
+
+    <!--<div class="form-group">
         <label for="html-text">Text</label>
         <input ng-model="model.widget.text"
                type="text"
                placeholder="HTML Text"
                class="form-control"
                id="html-text"/>
+    </div>-->
+
+    <div ng-model="model.widget.text"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
     </div>
 
     <a ng-click="model.updateWidget()" class="btn btn-primary btn-block">
@@ -14,6 +21,6 @@
     <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
         Delete
     </a>
-</form>
+
 
 

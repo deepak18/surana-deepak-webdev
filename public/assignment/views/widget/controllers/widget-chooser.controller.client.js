@@ -13,13 +13,13 @@
 
         function createWidget(widgetType) {
             newWidget = {};
-            newWidget._id =  (new Date()).getTime().toString();
-            newWidget.widgetType = widgetType;
+        //    newWidget._id =  (new Date()).getTime().toString();
+            newWidget.type = widgetType;
 
             WidgetService
                 .createWidget(vm.pageId, newWidget)
-                .success(function () {
-                    $location.url("/user/" + vm.userId +"/website/" +vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
+                .success(function (widget) {
+                    $location.url("/user/" + vm.userId +"/website/" +vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
                 })
                 .error(function () {
                     vm.error ="Unable to create new Widget.";
