@@ -50,13 +50,13 @@ module.exports = function(app){
     var googleConfig = {
         clientID     : process.env.GOOGLE_CLIENT_ID || '226290814945-7ra1u75agakr0f830h9k170boom8f4ud.apps.googleusercontent.com',
         clientSecret : 'DrkhuYXAHyb9MBew3BVsP5yL',
-        callbackURL  : process.env.GOOGLE_CALLBACK_URL || 'http://localhost:3000/auth/google/callback'
+        callbackURL  : 'http://ec2-54-91-132-216.compute-1.amazonaws.com:3000/auth/google/callback' || 'http://localhost:3000/auth/google/callback'
     };
 
     var spotifyConfig = {
         clientID     : 'ccc43ce0f5814af3a8c1a91f4808f720',
         clientSecret : '055d2114c2c24847ac00e2a309a3876c',
-        callbackURL  : 'http://localhost:3000/auth/spotify/callback'
+        callbackURL  : 'http://ec2-54-91-132-216.compute-1.amazonaws.com:3000/auth/spotify/callback' || 'http://localhost:3000/auth/spotify/callback'
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
