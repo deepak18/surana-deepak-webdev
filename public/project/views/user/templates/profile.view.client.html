@@ -1,0 +1,138 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-profile" aria-expanded="false">
+
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav nav-pills collapse navbar-collapse nav-justified" id="bs-example-navbar-collapse-profile">
+                <li role="presentation" class="active">
+                    <a data-toggle="link" href="#/profile">
+                        Profile
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/search">
+                        Search Portal
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/dashboard" ng-if="model.user.role != 'LEARNER'">
+                        Dashboard
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">
+                        Admin
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a ng-click="model.deleteUser()" class="navbar-btn">
+                        Unregister User
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="profile-username">Username</label>
+            <input ng-model="model.user.username"
+                   type="text"
+                   value="sdeepak"
+                   class="form-control"
+                   id="profile-username"
+                   placeholder="Username">
+        </div>
+
+        <div class="form-group">
+            <label for="profile-email">Email address</label>
+            <input ng-model="model.user.email"
+                   type="email"
+                   value="surana.d@husky.neu.edu"
+                   class="form-control"
+                   id="profile-email"
+                   placeholder="mail.me@gmail.com">
+        </div>
+
+        <div class="form-group">
+            <label for="profile-first-name">First Name</label>
+            <input ng-model="model.user.firstName"
+                   type="text"
+                   value="Deepak"
+                   class="form-control"
+                   id="profile-first-name"
+                   placeholder="First Name">
+        </div>
+
+        <div class="form-group">
+            <label for="profile-last-name">Last Name</label>
+            <input ng-model="model.user.lastName"
+                   type="text"
+                   value="Surana"
+                   class="form-control"
+                   id="profile-last-name"
+                   placeholder="Last Name">
+        </div>
+    </form>
+
+
+
+    <a ng-click="model.update(model.user)"
+       class="btn btn-success btn-block">
+        Update
+    </a>
+
+    <a class="btn btn-danger  btn-block"
+       ng-click="model.logout()">
+        Logout
+    </a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text text-center btn-block">
+            <div class="col-xs-3">
+                <a href="#/login" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#/profile" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

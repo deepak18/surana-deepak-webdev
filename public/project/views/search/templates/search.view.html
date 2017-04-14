@@ -1,0 +1,171 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-dashboard" aria-expanded="false">
+
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav nav-pills nav-justified collapse navbar-collapse" id="bs-example-navbar-collapse-dashboard">
+                <li role="presentation">
+                    <a data-toggle="link" href="#/profile">
+                        Profile
+                    </a>
+                </li>
+                <li role="presentation"   class="active">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/search">
+                        Search Portal
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/favorite">
+                        Favorite Library
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/dashboard" ng-if="model.user.role != 'LEARNER'">
+                        Dashboard
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" href="#/user/dashboard/upload" ng-if="model.user.role != 'LEARNER'" class="navbar-btn">
+                        Upload
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">
+                        Admin
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <h1>Tutorial Search</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="input-group">
+                <span class="input-group-btn">
+
+                    <div class="dropdown btn-group">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Type
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a ng-click="model.searchType = 'video'">Video</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a ng-click="model.searchType = 'slide'">Slide</a></li>
+                        </ul>
+                    </div>
+                </span>
+
+                <input ng-model="topic" type="text" class="form-control" placeholder="Search for ...">
+            </div>
+        </div>
+        <div class="col-xs-4 col-xs-offset-4">
+
+            <button ng-click="model.searchResources(topic)" class="btn btn-primary btn-block" id="submitTopic" type="button">
+                Search !
+            </button>
+
+        </div>
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <table ng-show="model.showSlideResult" class = "table table-hover table-bordered">
+        <caption>Search Results</caption>
+
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Thumbnail</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="slide in model.slides">
+            <td><a href="#/user/details/slide/{{slide.ID[0]}}/{{model.topic}}">{{slide.Title[0]}}</a></td>
+            <td>{{slide.Description[0]}}</td>
+            <td><a href="#/user/details/slide/{{slide.ID[0]}}/{{model.topic}}">
+                <img ng-src="{{slide.ThumbnailURL[0]}}" /></a>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <table ng-show="model.showVideoResult" class = "table table-hover table-bordered">
+        <caption>Search Results</caption>
+
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Thumbnail</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="video in model.videos">
+            <td><a href="#/user/details/video/{{video.id.videoId}}/{{model.topic}}">{{video.snippet.title}}</a></td>
+            <td>{{video.snippet.description}}</td>
+            <td><a href="#/user/details/video/{{video.id.videoId}}/{{model.topic}}">
+                <img ng-src="{{video.snippet.thumbnails.medium.url}}" /></a>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <!--<iframe
+            width="560"
+            height="315"
+            src="http://www.youtube.com/embed?listType=playlist&list=PASTE_YOUTUBE_PLAYLIST_ID&autoplay=1"
+            frameborder="0"
+            allowfullscreen
+    ></iframe>-->
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text text-center btn-block">
+            <div class="col-xs-3">
+                <a ng-click="model.getConfirmation();" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#/profile" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

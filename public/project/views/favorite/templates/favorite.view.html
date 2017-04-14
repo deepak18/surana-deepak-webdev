@@ -1,0 +1,122 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-dashboard" aria-expanded="false">
+
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav nav-pills nav-justified collapse navbar-collapse" id="bs-example-navbar-collapse-dashboard">
+                <li role="presentation">
+                    <a data-toggle="link" href="#/profile">
+                        Profile
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/search">
+                        Search Portal
+                    </a>
+                </li>
+                <li role="presentation" class="active">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/favorite">
+                        Favorite Library
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/dashboard" ng-if="model.user.role != 'LEARNER'">
+                        Dashboard
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" href="#/user/dashboard/upload" ng-if="model.user.role != 'LEARNER'" class="navbar-btn">
+                        Upload
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">
+                        Admin
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+<!--<nav class="navbar navbar-default">-->
+<div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-favorite" aria-expanded="false">
+
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <ul class="nav nav-tabs nav-justified collapse navbar-collapse" id="bs-example-navbar-collapse-favorite">
+            <li role="presentation" class="active">
+                <a data-toggle="tab" href="#favoriteVideos" target="_self">
+                    Videos
+                </a>
+            </li>
+            <li role="presentation">
+                <a data-toggle="tab" href="#favoriteSlides" target="_self">
+                    Slides
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+
+    <div class="tab-content">
+        <div id="favoriteVideos" class="tab-pane fade in active">
+            <h3>Favorite Videos</h3>
+            <div ng-repeat="favoriteVideo in model.favoriteVideos">
+                <div class="youtube-widget">
+                    <iframe ng-src="{{model.getYouTubeEmbedUrl(favoriteVideo)}}"></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="favoriteSlides" class="tab-pane fade">
+            <h3>Favorite Slides</h3>
+            <div ng-repeat="favoriteSlide in model.favoriteSlides">
+                <div ng-bind-html="model.getTrustedHtml(favoriteSlide.Embed[0])"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text text-center btn-block">
+            <div class="col-xs-3">
+                <a ng-click="model.getConfirmation();" class="navbar-link">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#/profile" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

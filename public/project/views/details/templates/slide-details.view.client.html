@@ -1,0 +1,158 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-details" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-details">
+            <ul class="nav nav-pills nav-justified">
+                <li role="presentation">
+                    <a data-toggle="link" href="#/profile">
+                        Profile
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" class="navbar-btn"
+                       href="#/user/favorite">
+                        Favorite Library
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">
+                        Admin
+                    </a>
+                </li>
+                <li role="presentation">
+                    <div class="dropdown" style="display: inline">
+                        <a class="dropdown-toggle" id="choiceBox" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Type <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="model.searchType = 'video'">Video</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a ng-click="model.searchType = 'slide'">Slide</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li role="presentation">
+                        <form class="form-inline" >
+                            <div class="form-group">
+                                <input ng-model="topic"  type="text" class="form-control" placeholder="Search">
+                                <button ng-click="model.searchResources(topic)" type="button" class="btn btn-default" id="submitTopic">Submit</button>
+                            </div>
+                        </form>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;
+        <div class="navbar-text pull-left">
+            <a href="#/user/search/slide/{{model.slidetopic}}" class="navbar-link">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                &lt;!&ndash;<span class="sr-only">Toggle navigation</span>&ndash;&gt;
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                &lt;!&ndash;<span class="icon-bar"></span>&ndash;&gt;
+            </button>
+            <a class="navbar-brand" href="#/user/search/slide/{{model.slidetopic}}">Search Here</a>
+        </div>
+
+        &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+
+            <div class="nav navbar-nav navbar-text">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="choiceBox" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Type <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="model.searchType = 'video'">Video</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a ng-click="model.searchType = 'slide'">Slide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input ng-model="topic" type="text" class="form-control" placeholder="Search">
+                </div>
+                <button ng-click="model.searchResources(topic)" type="button" class="btn btn-default" id="submitTopic">Submit</button>
+            </form>
+        </div>
+    </div>
+</nav>-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8" style="margin-bottom: 20px;">
+            <div class="slideshow-widget">
+                <iframe ng-src= "{{model.getSlideShowEmbedUrl(model.slide.SlideshowEmbedUrl[0])}}"
+                        frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <blockquote class="blockquote">
+                <h1 class="display-4 blockquote">{{model.slide.Title[0]}}</h1>
+                <footer class="blockquote-footer"><cite title="Source Title">{{model.slide.Username[0]}}</cite></footer>
+            </blockquote>
+
+            <a ng-hide="model.favorites" class="btn btn-primary btn-info" ng-click="model.addSlidetoFavorites()">
+                <span class="glyphicon glyphicon-star"></span> Add to Favorites</a>
+
+            <a ng-show="model.favorites" class="btn btn-primary btn-success" ng-click="model.removeSlidefromFavorites()">
+                <span class="glyphicon glyphicon-check"></span> Favorites</a>
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
+
+            <p class="h4">Description</p>
+            <p class="text-justify">
+                {{model.slide.Description[0]}}
+            </p>
+
+            <p class="h5">Created: {{model.slide.Created[0]}} </p>
+            <p class="h5">Updated: {{model.slide.Updated[0]}} </p>
+        </div>
+
+    </div>
+
+    <div>
+        <p class="h2">Related Readings: </p>
+       <!-- <div ng-repeat="relatedSlide in model.relatedSlides" class="list-group-item">
+            <div ng-bind-html="model.getTrustedHtml(relatedSlide.Embed[0])"></div>
+        </div>-->
+
+        <div class="row">
+            <div ng-repeat="relatedSlide in model.relatedSlides" ng-switch="{{$index}} % 2">
+
+                <div class="col-sm-6">
+                        <div ng-switch-when="0">
+                            <a href="#/user/details/slide/{{model.relatedSlides[$index].ID[0]}}/{{model.slidetopic}}"><em>Explore this. </em> </a>
+                            <div ng-bind-html="model.getTrustedHtml(model.relatedSlides[$index].Embed[0])"></div>
+                        </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div ng-switch-when="0">
+                        <span ng-show="model.relatedSlides[$index+1]">
+                            <a href="#/user/details/slide/{{model.relatedSlides[$index+1].ID[0]}}/{{model.slidetopic}}"><em>Explore this. </em></a>
+                            <div ng-bind-html="model.getTrustedHtml(model.relatedSlides[$index+1].Embed[0])"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

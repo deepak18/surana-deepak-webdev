@@ -35,7 +35,7 @@ module.exports = function(app){
         var width         = req.body.width;
         var uid           = req.body.uid;
         var wid           = req.body.wid;
-
+        console.log("width :  " +width);
     //    var originalname  = myFile.originalname; // file name on user's computer
     //    var filename      = myFile.filename;     // new file name in upload folder
     //    var path          = myFile.path;         // full path of uploaded file

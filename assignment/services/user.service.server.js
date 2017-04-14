@@ -53,6 +53,8 @@ module.exports = function(app){
         var userId = req.params.userId;
         var newUser = req.body;
 
+        console.log(req);
+
         userModel
             .updateUser(userId, newUser)
             .then(function (user) {
