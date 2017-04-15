@@ -5,14 +5,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </button>
             <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-details">
                 <ul class="nav nav-pills nav-justified">
-                    <li role="presentation" >
-                        <a data-toggle="link" href="#/profile">
-                            Profile
+                    <li role="presentation" class="active">
+                        <a data-toggle="link" class="navbar-btn"
+                           href="#/user/details/slide/{{model.videoID}}/{{model.videotopic}}">
+                            Video Details
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a data-toggle="link" class="navbar-btn"
+                           href="#/user/search/video/{{model.videotopic}}">
+                            Search Portal
                         </a>
                     </li>
                     <li role="presentation">
@@ -22,12 +27,7 @@
                         </a>
                     </li>
                     <li role="presentation">
-                        <a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">
-                            Admin
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <div class="dropdown" style="display: inline">
+                        <div class="dropdown" style="display: inline; float: right; padding-right: 10px; margin-bottom: -4px">
                             <a class="dropdown-toggle" id="choiceBox" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Type <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a ng-click="model.searchType = 'video'">Video</a></li>

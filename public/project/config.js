@@ -14,7 +14,9 @@
         $routeProvider
         //User Controller Configurations
             .when("/admin",{
-                templateUrl: 'views/admin/user-list.view.client.html',
+                templateUrl: 'views/admin/templates/admin.view.client.html',
+                controller: 'adminController',
+                controllerAs: 'model',
                 resolve: {
                     adminUser: checkAdmin
                 }

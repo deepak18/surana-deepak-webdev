@@ -1,0 +1,11 @@
+<h1>Admin</h1>
+
+<ul class="list-group">
+    <li class="list-group-item active">
+        Users
+    </li>
+    <li ng-repeat="user in model.users" class="list-group-item">
+        {{user.username}}
+    </li>
+</ul>
+{{model.users}}

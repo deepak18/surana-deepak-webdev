@@ -13,7 +13,7 @@ module.exports = function(app){
     // Generating SHA1
     var crypto = require('crypto');
     var sha1 = require('sha1');
-
+    var  request = require('request');
     passport.use(new LocalStrategy(localStrategy));
 
     passport.serializeUser(serializeUser);
@@ -27,6 +27,7 @@ module.exports = function(app){
     app.post("/api/checkLogin", checkLogin);
     app.post("/api/logout", logout);
     app.get("/api/user", findUser);
+    app.get("/api/admin/users", findAllUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.post("/api/user", createUser);
@@ -50,13 +51,13 @@ module.exports = function(app){
     var googleConfig = {
         clientID     : process.env.GOOGLE_CLIENT_ID || '226290814945-7ra1u75agakr0f830h9k170boom8f4ud.apps.googleusercontent.com',
         clientSecret : 'DrkhuYXAHyb9MBew3BVsP5yL',
-        callbackURL  : 'http://ec2-54-91-132-216.compute-1.amazonaws.com:3000/auth/google/callback' || 'http://localhost:3000/auth/google/callback'
+        callbackURL  : '/auth/google/callback'
     };
 
     var spotifyConfig = {
         clientID     : 'ccc43ce0f5814af3a8c1a91f4808f720',
         clientSecret : '055d2114c2c24847ac00e2a309a3876c',
-        callbackURL  : 'http://ec2-54-91-132-216.compute-1.amazonaws.com:3000/auth/spotify/callback' || 'http://localhost:3000/auth/spotify/callback'
+        callbackURL  : '/auth/spotify/callback'
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
@@ -174,7 +175,7 @@ module.exports = function(app){
     }
 
     function logout(req, res) {
-        req.session.destroy()
+      //  req.session.destroy()
         req.logout();
         res.sendStatus(200);
         /*var token = req.session.passport.user.google.token;
@@ -205,23 +206,44 @@ module.exports = function(app){
             req.logOut();
             res.redirect('/');
         });*/
-
-
-       /* var url = "https://www.google.com/accounts/logout?continue=" + req.protocol + '://' + req.get('host') + "/public/project/index.html#/login";
+     //   "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://www.example.com
+        /*var url = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout";//?continue=" + req.protocol + '://' + req.get('host') + "/public/project/index.html#/login";
         console.log(url);
-            https.get(url, function (response) {
-            // Continuously update stream with data
-            var body = '';
-            response.on('data', function(chunk) {
-                body += chunk;
-            });
-            response.on('end', function() {
+        request(url, function (err, result, body) {
+            if(err){
+                console.log(err);
+                res.sendStatus(500).send("Could not fetch jobs.");
+            } else{
                 console.log(body);
-                res.sendStatus(200);
-            });
-        }).on('error', function(err){
-            res.sendStatus(500);
+                res.send(body);
+            }
         });*/
+
+        // var user          = req.user;
+        // user.google.token = undefined;
+        /*user.save(function(err) {
+            console.log(user, ' has been successfully logged out.');
+            res.redirect('/');
+        });*/
+
+       /* req.logout();
+        res.sendStatus(200);*/
+
+        /* var url = "https://www.google.com/accounts/logout?continue=" + req.protocol + '://' + req.get('host') + "/public/project/index.html#/login";
+         console.log(url);
+             https.get(url, function (response) {
+             // Continuously update stream with data
+             var body = '';
+             response.on('data', function(chunk) {
+                 body += chunk;
+             });
+             response.on('end', function() {
+                 console.log(body);
+                 res.sendStatus(200);
+             });
+         }).on('error', function(err){
+             res.sendStatus(500);
+         });*/
     }
 
     function checkAdmin(req, res) {
@@ -422,5 +444,17 @@ module.exports = function(app){
         } else{
             res.sendStatus(404);
         }*/
+    }
+
+    function findAllUsers(req, res) {
+        if(req.user && req.user.role=='ADMIN') {
+            userModel
+                .findAllUsers()
+                .then(function (users) {
+                    res.json(users);
+                });
+        } else {
+            res.sendStatus(401);
+        }
     }
 };

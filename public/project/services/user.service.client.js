@@ -10,6 +10,7 @@
             "findUserById": findUserById,
             "findUserByUsername" : findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
+            "findAllUsers" : findAllUsers,
             "updateUser": updateUser,
             "deleteUser" : deleteUser,
             "login" : login,
@@ -109,6 +110,10 @@
                     return angular.copy(user);
                 }
             }*/
+        }
+        
+        function findAllUsers() {
+            return $http.get("/api/admin/users");
         }
     }
 })();

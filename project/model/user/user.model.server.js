@@ -7,6 +7,7 @@ userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
+userModel.findAllUsers = findAllUsers;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.findUserByGoogleId = findUserByGoogleId;
@@ -203,6 +204,10 @@ function findUserById(userId){
         });
 
     return deffered.promise;
+}
+
+function findAllUsers() {
+    return userModel.find();
 }
 
 function createUser(user) {
