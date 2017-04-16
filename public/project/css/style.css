@@ -10,7 +10,8 @@ body {
 }
 
 .gradient-look{
-    background: -webkit-linear-gradient(-90deg,#7a858b, #0d0d0e);
+    background: -webkit-linear-gradient(-90deg,#7a858b, #595965);
+    padding: 10px;
 }
 
 label{

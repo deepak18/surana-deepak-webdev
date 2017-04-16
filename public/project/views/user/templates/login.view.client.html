@@ -41,7 +41,7 @@
     </div>
 </nav>
 
-<div class="container-fluid gradient-look">
+<div class="container-fluid gradient-look col-sm-4 col-sm-offset-4">
 
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
@@ -68,6 +68,7 @@
 
         <a class="btn btn-primary btn-block"
            ng-click="model.login(user)">
+            <span class="fa fa-lock"></span>
             Login
         </a>
 

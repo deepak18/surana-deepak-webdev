@@ -27,10 +27,7 @@
             UserService
                 .logout()
                 .success(function () {
-
-                    console.log("Surana");
-                    //$location.url('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout');
-                    $location.url("/register");
+                    $location.url("/login");
                 });
         }
 
