@@ -7,8 +7,9 @@
         .module("MusicalTutorialApp")
         .controller("uploadController", uploadController);
 
-    function uploadController() {
+    function uploadController(currentUser) {
         var vm = this;
+        vm.user = currentUser;
 
         /*
          Copyright 2015 Google Inc. All Rights Reserved.

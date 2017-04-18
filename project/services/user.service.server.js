@@ -9,6 +9,8 @@ module.exports = function(app){
     var parseString = require('xml2js').parseString;
     var qs = require('querystring');
 
+    // Encrypting Password
+    var bcrypt = require("bcrypt-nodejs");
 
     // Generating SHA1
     var crypto = require('crypto');
@@ -30,8 +32,10 @@ module.exports = function(app){
     app.get("/api/admin/users", findAllUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
+    app.put("/api/admin/user/:userId", updateUserRole);
     app.post("/api/user", createUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.delete("/api/user/:userId", unregisterUser);
+    app.delete("/api/admin/user/:userId", deleteUser);
 
     app.get('/auth/google/callback',
         passport.authenticate('google', {
@@ -149,13 +153,14 @@ module.exports = function(app){
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username,password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
                     if (!user) {
                         return done(null, false);
+                    } else if(user && bcrypt.compareSync(password, user.password)){
+                        return done(null, user);
                     }
-                    return done(null, user);
                 },
                 function(err) {
                     if (err) {
@@ -202,10 +207,6 @@ module.exports = function(app){
             res.sendStatus(500);
         });*/
 
-        /*req.session.destroy(function (err){
-            req.logOut();
-            res.redirect('/');
-        });*/
      //   "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://www.example.com
         /*var url = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout";//?continue=" + req.protocol + '://' + req.get('host') + "/public/project/index.html#/login";
         console.log(url);
@@ -226,8 +227,6 @@ module.exports = function(app){
             res.redirect('/');
         });*/
 
-       /* req.logout();
-        res.sendStatus(200);*/
 
         /* var url = "https://www.google.com/accounts/logout?continue=" + req.protocol + '://' + req.get('host') + "/public/project/index.html#/login";
          console.log(url);
@@ -247,9 +246,7 @@ module.exports = function(app){
     }
 
     function checkAdmin(req, res) {
-        var loggedIn = req.isAuthenticated();
-        var isAdmin = req.user.role == "ADMIN";
-        if(loggedIn && isAdmin){
+        if(req.isAuthenticated() && req.user.role == "ADMIN"){
             res.json(req.user);
         } else{
             res.send('0');
@@ -289,25 +286,40 @@ module.exports = function(app){
     function deleteUser(req, res) {
         var userId = req.params.userId;
 
-        userModel
-            .deleteUser(userId)
-            .then(function() {
-                res.sendStatus(200);
-            }, function (err) {
-                res.sendStatus(500).send(err);
-            });
-        /*for(var u in users){
-            if(users[u]._id === userId){
-                users.splice(u, 1);
-                res.sendStatus(200);
-                return;
-            }
+        if(req.user && req.user.role == 'ADMIN'){
+            userModel
+                .deleteUser(userId)
+                .then(function() {
+                    res.sendStatus(200);
+                }, function (err) {
+                    res.sendStatus(500).send(err);
+                });
+        } else{
+            res.sendStatus(401);
         }
-        res.sendStatus(404);*/
+    }
+
+    function unregisterUser(req,res) {
+        var userId = req.params.userId;
+
+        if(req.user && req.user._id == userId){
+            userModel
+                .deleteUser(userId)
+                .then(function() {
+                    res.sendStatus(200);
+                }, function (err) {
+                    res.sendStatus(500).send(err);
+                });
+        } else{
+            res.sendStatus(401);
+        }
+
+
     }
 
     function createUser(req, res) {
         var newUser = req.body;
+        newUser.password = bcrypt.hashSync(newUser.password);
         userModel
             .createUser(newUser)
             .then(function (newUser) {
@@ -321,48 +333,41 @@ module.exports = function(app){
             }, function (err) {
                 res.status(500).send(err.errors.username.message);
             });
-        /*newUser._id =(new Date()).getTime().toString();
-        users.push(newUser);
-        res.send(newUser._id);*/
+    }
+
+    function updateUserRole(req, res) {
+        var user = req.body;
+        var userId = req.params.userId;
+        if(req.user && req.user.role == 'ADMIN'){
+            userModel
+                .updateUser(userId, user)
+                .then(function (user) {
+                    res.send(user);
+                }, function (err) {
+                    res.sendStatus(500).send(err);
+                });
+        } else{
+            res.sendStatus(401);
+        }
     }
 
     function updateUser(req, res) {
-       /* console.log(req.body);
-        if(req.user && req.user._id == req.body._id) {
-            userModel
-                .updateUser(req.body)
-                .then(function (status) {
-                    res.send(200);
-                });
-        } else {
-            res.json({});
-        }*/
-
         var newUser= req.body;
-        var userId = newUser._id;
+        var userId = req.params.userId;
         console.log("server new userid: "+ newUser._id);
 
-
-        userModel
-            .updateUser(userId, newUser)
-            .then(function (user) {
-                res.send(user);
-            }, function (err) {
-                res.sendStatus(500).send(err);
-            });
-
-        /*for(var u in users) {
-            var user = users[u];
-            if( user._id === userId ) {
-                users[u].firstName = newUser.firstName;
-                users[u].lastName = newUser.lastName;
-                users[u].email = newUser.email;
-                //  res.json(users[u]);
-                res.sendStatus(200);
-                return;
-            }
+        if(req.user && req.user._id == req.body._id) {
+            userModel
+                .updateUser(userId, newUser)
+                .then(function (user) {
+                    res.send(user);
+                }, function (err) {
+                    res.sendStatus(500).send(err);
+                });
+        } else{
+            res.sendStatus(401);
         }
-        res.sendStatus(404);*/
+
     }
 
     function findUserById(req, res) {
@@ -431,7 +436,9 @@ module.exports = function(app){
         userModel
             .findUserByCredentials(username, password)
             .then(function(user){
-                res.json(user);
+                if(user){
+                    res.json(user);
+                }
             }, function (err){
                 res.sendStatus(500).send(err);
             });

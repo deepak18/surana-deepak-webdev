@@ -27,12 +27,12 @@
                     </a>
                 </li>
                 <li role="presentation"  class="active">
-                    <a data-toggle="link" href="#/user/dashboard/upload" ng-hide="model.user.role == 'LEARNER'" class="navbar-btn">
+                    <a data-toggle="link" href="#/user/dashboard/upload" ng-if="model.user.role != 'LEARNER'" class="navbar-btn">
                         Upload
                     </a>
                 </li>
                 <li role="presentation">
-                    <a data-toggle="link" href="#/admin" ng-show="model.user.role == 'ADMIN'" class="navbar-btn">
+                    <a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">
                         Admin
                     </a>
                 </li>

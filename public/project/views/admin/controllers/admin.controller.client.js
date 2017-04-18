@@ -6,19 +6,38 @@
         .module("MusicalTutorialApp")
         .controller("adminController", adminController);
 
-    function adminController(UserService) {
+    function adminController(adminUser, UserService) {
         var vm = this;
+        vm.deleteUser = deleteUser;
+        vm.updateUserRole = updateUserRole;
+        vm.user = adminUser;
         
         function init() {
+            findAllUsers();
+        }
+        init();
+
+        function findAllUsers() {
             UserService
                 .findAllUsers()
                 .then(renderUsers);
         }
-        init();
-        
+
         function renderUsers(response) {
             vm.users = response.data;
             console.log(vm.users);
+        }
+
+        function updateUserRole(user) {
+            UserService
+                .updateUserRole(user)
+                .then(findAllUsers);
+        }
+
+        function deleteUser(user) {
+            UserService
+                .deleteUser(user._id)
+                .then(findAllUsers);
         }
     }
 

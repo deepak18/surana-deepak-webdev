@@ -6,8 +6,9 @@
         .module("MusicalTutorialApp")
         .controller("tutorialSearchController", tutorialSearchController);
 
-    function tutorialSearchController(UserService, SlideService, VideoService, $routeParams, $sce, $location) {
+    function tutorialSearchController(UserService, SlideService, VideoService, currentUser, $routeParams, $sce, $location) {
         var vm = this;
+        vm.user = currentUser;
 
         vm.searchYouTube = searchYouTube;
         vm.searchSlideShare = searchSlideShare;

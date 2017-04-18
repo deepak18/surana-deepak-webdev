@@ -6,7 +6,7 @@
     function profileController($routeParams, UserService, $location) {
         var vm = this;
 
-        vm.deleteUser = deleteUser;
+        vm.unregisterUser = unregisterUser;
         vm.update = update;
         vm.logout = logout;
 
@@ -31,11 +31,11 @@
                 });
         }
 
-        function deleteUser() {
+        function unregisterUser() {
             var answer = confirm("Are you sure?");
             if(answer){
-                UserService.
-                    deleteUser(vm.user._id)
+                UserService
+                    .unregisterUser(vm.user._id)
                     .success(function () {
                         $location.url('/login');
                     })

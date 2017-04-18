@@ -1,85 +1,65 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-profile" aria-expanded="false">
-
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <ul class="nav nav-pills collapse navbar-collapse nav-justified" id="bs-example-navbar-collapse-profile">
-                <li role="presentation" class="active">
-                    <a data-toggle="link" href="#/login">
-                        Login
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a data-toggle="link" class="navbar-btn"
-                       href="#/register">
-                        Register
-                    </a>
-                </li>
-                <!--<li role="presentation">-->
-                    <!--<a data-toggle="link" class="navbar-btn"-->
-                       <!--href="#/user/dashboard" ng-if="model.user.role != 'LEARNER'">-->
-                        <!--Dashboard-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li role="presentation">-->
-                    <!--<a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">-->
-                        <!--Admin-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li role="presentation">-->
-                    <!--<a ng-click="model.deleteUser()" class="navbar-btn">-->
-                        <!--Unregister User-->
-                    <!--</a>-->
-                <!--</li>-->
-            </ul>
+            <a class="navbar-brand" href="#/login">
+                Login
+            </a>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid gradient-look col-sm-4 col-sm-offset-4">
+<div class="container-fluid">
+    <div class="row">
+        <div class="gradient-look col-sm-4 col-sm-offset-4">
 
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input ng-model="user.username"
+                           type="text"
+                           class="form-control"
+                           id="login-username"
+                           placeholder="Username"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input ng-model="user.password"
+                           type="password"
+                           class="form-control"
+                           id="login-password"
+                           placeholder="Password"/>
+                </div>
+
+                <a class="btn btn-primary btn-block"
+                   ng-click="model.login(user)">
+                    <span class="fa fa-lock"></span>
+                    Login
+                </a>
+
+                <a href="/auth/google" class="btn btn-danger btn-block">
+                    <span class="fa fa-google-plus"></span>
+                    Google
+                </a>
+                <!--<a href="/auth/spotify" class="btn btn-info btn-block">-->
+                    <!--<span class="fa fa-spotify"></span>-->
+                    <!--Spotify-->
+                <!--</a>-->
+
+            </form>
+        </div>
     </div>
 
-    <form>
-        <div class="form-group">
-            <label for="login-username">Username</label>
-            <input ng-model="user.username"
-                   type="text"
-                   class="form-control"
-                   id="login-username"
-                   placeholder="Username"/>
+    <div class="row">
+        <div class="container-fluid col-sm-4 col-sm-offset-4" style="padding-top: 10px">
+            <a class="btn btn-info btn-block" style="padding: 10px"
+               href="#/register">
+                Register
+            </a>
         </div>
-
-        <div class="form-group">
-            <label for="login-password">Password</label>
-            <input ng-model="user.password"
-                   type="password"
-                   class="form-control"
-                   id="login-password"
-                   placeholder="Password"/>
-        </div>
-
-        <a class="btn btn-primary btn-block"
-           ng-click="model.login(user)">
-            <span class="fa fa-lock"></span>
-            Login
-        </a>
-
-        <a href="/auth/google" class="btn btn-danger btn-block">
-            <span class="fa fa-google-plus"></span>
-            Google
-        </a>
-        <a href="/auth/spotify" class="btn btn-info btn-block">
-            <span class="fa fa-spotify"></span>
-            Spotify
-        </a>
-
-    </form>
+    </div>
 </div>

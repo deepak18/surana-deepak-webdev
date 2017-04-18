@@ -50,17 +50,26 @@
             .when("/user/search",{
                 templateUrl: 'views/search/templates/search.view.html',
                 controller: "tutorialSearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
             .when("/user/search/slide/:slidetopic",{
                 templateUrl: 'views/search/templates/search.view.html',
                 controller: "tutorialSearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
             .when("/user/search/video/:videotopic",{
                 templateUrl: 'views/search/templates/search.view.html',
                 controller: "tutorialSearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
             .when("/user/details/slide/:slideID/:slidetopic", {
                 templateUrl: 'views/details/templates/slide-details.view.client.html',
@@ -129,6 +138,11 @@
                             deferred.reject();
                             $location.url("/profile");
                         }
+                    }
+                )
+                .error(
+                    function (err) {
+                        $location.url("/login");
                     }
                 );
             return deferred.promise;

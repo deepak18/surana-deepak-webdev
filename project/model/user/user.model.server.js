@@ -152,7 +152,6 @@ function deleteUser(userId){
 }
 
 function updateUser(userId, user) {
-    console.log(user);
     return userModel.update({_id: user._id}, {$set: user});
 }
 
@@ -211,12 +210,10 @@ function findAllUsers() {
 }
 
 function createUser(user) {
-    console.log("model user:" + user.google.id);
     var deffered = q.defer();
     userModel
         .create(user, function (err, user) {
             if(err){
-                console.log("exists model");
                 deffered.reject(err);
             }else {
 

@@ -8,8 +8,9 @@
         vm.createUser = createUser;
 
         function createUser(newUser){
+            console.log(newUser);
 
-            /*if(newUser == null){
+            if(newUser == null){
                 vm.error = 'Empty Fields';
                 return;
             }
@@ -20,7 +21,7 @@
             if(newUser.password != newUser.vpassword){
                 vm.error = 'Password Mismatch';
                 return;
-            }*/
+            }
 
             UserService
                 .findUserByUsername(newUser.username)

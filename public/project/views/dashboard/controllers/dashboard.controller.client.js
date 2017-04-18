@@ -7,8 +7,9 @@
         .module("MusicalTutorialApp")
         .controller("dashboardController", dashboardController);
 
-    function dashboardController($sce) {
+    function dashboardController($sce,currentUser) {
         var vm = this;
+        vm.user = currentUser;
 
         // The client ID is obtained from the {{ Google Cloud Console }}
         // at {{ https://cloud.google.com/console }}.

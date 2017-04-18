@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li role="presentation">
-                    <a data-toggle="link" href="#/admin" ng-show="model.user.role == 'ADMIN'" class="navbar-btn">
+                    <a data-toggle="link" href="#/admin" ng-if="model.user.role == 'ADMIN'" class="navbar-btn">
                         Admin
                     </a>
                 </li>

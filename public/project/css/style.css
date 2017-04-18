@@ -75,7 +75,7 @@ a:hover{
 }
 
 .open>.dropdown-menu {
-    background: #777;
+    background: #47C2B9;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
     background-color: #47C2B9;
@@ -85,6 +85,9 @@ a:hover{
     background-color: #353f49;
 }
 
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background-color: #5f5f5f;
+}
 .glyphicon-move {
     padding-left: 5px;
 }
