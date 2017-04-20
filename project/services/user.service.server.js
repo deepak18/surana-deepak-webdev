@@ -160,6 +160,8 @@ module.exports = function(app){
                         return done(null, false);
                     } else if(user && bcrypt.compareSync(password, user.password)){
                         return done(null, user);
+                    } else{
+                        return done(null, false);
                     }
                 },
                 function(err) {

@@ -13,6 +13,8 @@
 
         function login(user)
         {
+            vm.error = null;
+            console.log(user.username+ "  " +user.password);
             if(user)
                 UserService
                     .login(user.username, user.password)
@@ -27,7 +29,8 @@
                             }
                         },
                         function(err) {
-                            vm.error = err;
+                            vm.error = err.data;
+                            console.log(err);
                         }
                     );
         }

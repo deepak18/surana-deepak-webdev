@@ -15,7 +15,7 @@
                 return;
             }
             if(newUser.username == null || newUser.password == null || newUser.vpassword == null){
-                vm.error = 'Empty Fields';
+                vm.error = 'Missing Mandatory fields';
                 return;
             }
             if(newUser.password != newUser.vpassword){
