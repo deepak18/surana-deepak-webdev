@@ -8,7 +8,6 @@
         vm.createUser = createUser;
 
         function createUser(newUser){
-            console.log(newUser);
 
             if(newUser == null){
                 vm.error = 'Empty Fields';
@@ -26,11 +25,13 @@
             UserService
                 .findUserByUsername(newUser.username)
                 .success(function (existingUser) {
-                        console.log("existingUser");
                         vm.error = "Sorry, that Username has been already taken.";
 
                 })
                 .error(function () {
+                    if(newUser.role == false){
+                        newUser.role='LEARNER';
+                    }
                     UserService
                         .createUser(newUser)
                         .success(function (newUser) {

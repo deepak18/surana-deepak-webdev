@@ -18,7 +18,6 @@ var userSchema = mongoose.Schema({
     slides: [String],
     videos: [String],
     uploads: [String],
-    //websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebAppWebsite'}],
     dateCreated: {type:Date, default: Date.now()}
 }, {collection:'musical.tutorial.user'});
 
