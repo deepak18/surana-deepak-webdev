@@ -26,7 +26,7 @@ app.use(express.static(__dirname));
 require("./project/app")(app);
 require ("./test/app.js")(app);
 
-//require("./assignment/app.js")(app);
+// require("./assignment/app.js")(app);
 
 require("./assignment/model/models.server");
 require("./mongo/movie.js")(app);

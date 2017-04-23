@@ -29,9 +29,13 @@
 
                 })
                 .error(function () {
+                    console.log(newUser);
                     if(newUser.role == false){
                         newUser.role='LEARNER';
+                    } else {
+                        newUser.role='TUTOR';
                     }
+                    console.log(newUser);
                     UserService
                         .createUser(newUser)
                         .success(function (newUser) {
